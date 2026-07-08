@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ora & Samuel - 11 Octobre 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Thème vert d'eau #D6F0D6 */
+            --vert-signature: #D6F0D6;
+            --vert-pale: rgba(214, 240, 214, 0.22);
+            --vert-bordure: rgba(214, 240, 214, 0.35);
+            --white-soft: rgba(255, 255, 255, 0.95);
+        }
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; font-family: 'Cormorant Garamond', serif; background-color: #000; overflow: hidden; }
+        .background-hero { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('bateau.jpg') no-repeat 10% center; background-size: cover; transform: scale(1.1); z-index: 1; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.40); z-index: 2; }
+        .main-container { position: relative; z-index: 10; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white; padding: 0 20px; }
+        .welcome-txt { font-style: italic; font-size: clamp(1rem, 4vw, 1.4rem); letter-spacing: 1px; margin: 0 0 5px 0; color: var(--vert-signature); font-weight: 400; text-shadow: 1px 1px 8px rgba(0,0,0,0.5); }
+        .names { font-family: 'Great Vibes', cursive; font-size: clamp(4rem, 14vw, 8rem); color: var(--vert-signature); text-shadow: 2px 2px 15px rgba(0,0,0,0.6); margin: 0; }
+        .date-text { font-weight: 700; letter-spacing: 6px; text-transform: uppercase; margin: 10px 0 40px 0; font-size: clamp(1.2rem, 5vw, 1.8rem); text-shadow: 1px 1px 10px rgba(0,0,0,0.5); }
+        .countdown { display: flex; gap: clamp(8px, 2vw, 15px); margin-bottom: 55px; }
+        .unit { display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--vert-pale); border: 1px solid var(--vert-bordure); width: clamp(70px, 18vw, 90px); height: clamp(75px, 20vw, 95px); border-radius: 5px; backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+        .unit span { font-size: clamp(1.5rem, 5vw, 2.2rem); font-weight: 700; }
+        .unit label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px; color: var(--vert-signature); }
+        .next-btn { background: rgba(255,255,255,0.05); border: 1px solid var(--vert-bordure); color: white; padding: 16px 50px; font-size: 1rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; transition: 0.2s; backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); text-decoration: none; }
+        .next-btn:hover { background: var(--vert-pale); border-color: var(--vert-signature); }
+        .next-btn:active { transform: scale(0.98); background: var(--vert-signature); color: #000; }
+    </style>
+</head>
+<body>
+<div class="background-hero"></div>
+<div class="overlay"></div>
+<div class="main-container">
+    <p class="welcome-txt">Nous avons le plaisir de vous convier au mariage de</p>
+    <h1 class="names">Ora & Samuel</h1>
+    <p class="date-text">Dimanche 11 Octobre 2026</p>
+    <div class="countdown">
+        <div class="unit"><span id="days">00</span><label>Jours</label></div>
+        <div class="unit"><span id="hours">00</span><label>Heures</label></div>
+        <div class="unit"><span id="mins">00</span><label>Min</label></div>
+        <div class="unit"><span id="secs">00</span><label>Sec</label></div>
+    </div>
+    <a href="invitation.html" class="next-btn">Découvrir</a>
+</div>
+<script>
+    // Dimanche 11 Octobre 2026 à 14h00 (mois 9 = octobre en JS)
+    // Constructeur numérique = fiable, contrairement au parsing de chaîne ("May 12, 2026...")
+    // dont le comportement varie selon les navigateurs/locales.
+    const weddingDate = new Date(2026, 9, 11, 14, 0, 0).getTime();
+
+    function update() {
+        const now = Date.now();
+        const diff = weddingDate - now;
+
+        if (diff <= 0) {
+            ['days', 'hours', 'mins', 'secs'].forEach(id => {
+                document.getElementById(id).innerText = '00';
+            });
+            return;
+        }
+
+        document.getElementById("days").innerText  = Math.floor(diff / 86400000).toString().padStart(2, '0');
+        document.getElementById("hours").innerText = Math.floor((diff % 86400000) / 3600000).toString().padStart(2, '0');
+        document.getElementById("mins").innerText  = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
+        document.getElementById("secs").innerText  = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
+    }
+    setInterval(update, 1000);
+    update();
+</script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0">
+    <title>Invitation - Samuel & Ora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@400;700&family=Frank+Ruhl+Libre:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --vert-prestige: #9CCB9C;
+            --vert-fonce: #6E9E6E;
+            --vert-pale: #D6F0D6;
+            --white-cream: #fbfdfb;
+            --text-gray: #5a5a5a;
+            --text-dark: #333333;
+            --line-color: rgba(156, 203, 156, 0.4);
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; width: 100%; min-height: 100%; background-color: var(--white-cream); font-family: 'Cormorant Garamond', serif; scroll-behavior: smooth; }
+
+        #fixed-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('fond.png') repeat;
+            background-size: 250px;
+            opacity: 0.95;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .navbar {
+            position: fixed; top: 0; width: 100%; height: 60px;
+            background-color: rgba(251, 253, 251, 0.98);
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 1px solid var(--line-color);
+            backdrop-filter: blur(5px); padding: 0 15px;
+        }
+        .nav-logo { height: 40px; width: auto; }
+        .nav-links { display: flex; gap: 12px; list-style: none; padding: 0; margin: 0; }
+        .nav-links a { text-decoration: none; color: var(--text-gray); text-transform: uppercase; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; letter-spacing: 1px; font-weight: 700; }
+
+        .page-wrapper { position: relative; z-index: 10; padding: 80px 10px 40px 10px; display: flex; flex-direction: column; align-items: center; }
+        .main-frame { width: 100%; max-width: 600px; text-align: center; }
+
+        .names-couple-container { display: flex; justify-content: center; align-items: center; gap: 10px; margin: 10px 0 -10px; }
+        .name-block { display: flex; flex-direction: column; align-items: center; flex: 1; }
+        .name-french { font-family: 'Great Vibes', cursive; color: var(--vert-fonce); font-size: clamp(2rem, 8vw, 2.8rem); line-height: 1; margin: 0; }
+        .name-hebrew-sub { font-family: 'Frank Ruhl Libre', serif; color: var(--vert-fonce); font-size: 1.5rem; font-weight: 700; margin-top: 5px; min-height: 1.5rem; }
+        .ampersand { font-family: 'Great Vibes', cursive; color: var(--vert-prestige); font-size: 2rem; line-height: 1; padding-bottom: 20px; }
+
+        .section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-dark); margin-bottom: 5px; }
+        .hero-photo, .section-photo { width: 100%; max-width: 500px; border: 2px solid white; padding: 5px; background: white; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .sub-text { font-size: 1.2rem; font-style: italic; color: var(--text-gray); display: block; margin-bottom: 5px; }
+        .date-block { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.3; margin-bottom: 10px; }
+        .date-line { font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dark); }
+        .venue-name { font-size: 1.4rem; font-weight: 700; color: var(--vert-fonce); margin-top: 2px; display: block; }
+        .address-text { font-style: italic; font-size: 1rem; color: var(--text-gray); }
+        .highlight-text { font-size: 0.95rem; color: var(--text-dark); font-style: italic; margin-top: 5px; display: block; }
+
+        .event-card { background-color: rgba(255, 255, 255, 0.95); border: 1px solid var(--line-color); padding: 20px 15px; margin: 15px 0; width: 100%; position: relative; }
+
+        .action-btns { display: flex; justify-content: center; gap: 10px; margin-top: 15px; flex-wrap: wrap; }
+        .btn-mini { text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--vert-fonce); border: 1px solid var(--vert-prestige); padding: 8px 12px; border-radius: 4px; transition: 0.3s; cursor: pointer; background: transparent; }
+        .btn-mini:hover { background: var(--vert-prestige); color: white; }
+
+        .illust-voiture { width: 120px; height: auto; margin: -15px auto 5px; display: block; }
+        .illust-bagues { width: 90px; height: auto; margin: -5px auto 5px; display: block; }
+        .hebreu-img { width: 100%; max-width: 380px; margin: 0 auto 10px; display: block; }
+
+        .family-grid { display: flex; justify-content: space-between; gap: 5px; margin-bottom: 15px; text-align: center; border-bottom: 1px solid var(--line-color); padding-bottom: 15px; width: 100%; align-items: flex-end; }
+        .family-col { flex: 1; min-width: 0; display: flex; flex-direction: column; justify-content: flex-end; }
+        .family-col h3 { font-family: 'Great Vibes', cursive; color: var(--vert-fonce); font-size: 1.3rem; margin-bottom: 8px; font-weight: normal; }
+        .family-col p { font-size: clamp(10px, 2.7vw, 12.5px); margin: 2px 0; color: var(--text-dark); line-height: 1.2; white-space: nowrap; font-weight: 500; letter-spacing: -0.2px; }
+        .parent-line { margin-top: 12px; }
+
+        .memorial-card { background-color: rgba(255, 255, 255, 0.8); border-radius: 4px; padding: 25px 20px; margin: 20px auto 5px; max-width: 90%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .memorial-card p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.5; color: var(--text-dark); font-style: italic; margin: 0; }
+
+        .wedding-card { background: white; padding: 25px 20px; margin-top: 20px; border: 1px solid var(--line-color); text-align: left; }
+        .btn-action { background: var(--text-dark); color: white; border: none; padding: 16px; width: 100%; text-transform: uppercase; font-weight: 700; cursor: pointer; letter-spacing: 2px; font-family: 'Montserrat', sans-serif; transition: 0.3s; }
+        .form-input { margin-bottom:15px; width:100%; padding:12px; border:1px solid #ddd; font-family: inherit; font-size: 0.9rem; }
+
+        .nb-section { display: none; margin-bottom: 15px; background: #f6fbf6; padding: 15px; border-left: 2px solid var(--vert-prestige); }
+        .nb-label { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--vert-fonce); margin-bottom: 6px; font-weight: 700; text-align: center; }
+        .nb-input { width: 100%; max-width: 160px; margin: 0 auto; display: block; padding: 10px; border: 1px solid var(--line-color); background: white; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; text-align: center; border-radius: 4px; outline: none; }
+        .nb-input:focus { border-color: var(--vert-fonce); }
+
+        .message-box { background: var(--white-cream); border: 1px solid var(--line-color); padding: 15px; margin-bottom: 15px; position: relative; }
+        .message-box label { display: block; font-family: 'Great Vibes', cursive; font-size: 1.4rem; color: var(--vert-fonce); margin-bottom: 8px; text-align: center; }
+        .message-box textarea { width: 100%; height: 80px; border: none; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; resize: none; outline: none; text-align: center; }
+
+        .rsvp-deadline { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--vert-fonce); font-style: italic; text-align: center; display: block; margin-bottom: 15px; font-weight: 600; }
+
+        .music-control {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.95); /* un peu plus opaque, le blur devient inutile */
+            border: 1.5px solid var(--vert-prestige);
+            border-radius: 30px;
+            padding: 10px 18px;
+            display: flex; align-items: center; gap: 12px;
+            box-shadow: 0 8px 25px rgba(156, 203, 156, 0.3);
+            cursor: pointer;
+            /* backdrop-filter supprimé : cause du lag/glissement du fixed sur iOS */
+            transform: translateZ(0);            /* force une couche GPU dédiée */
+            -webkit-transform: translateZ(0);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .music-bars { display: flex; align-items: flex-end; gap: 2px; height: 15px; }
+        .bar { width: 3px; background: var(--vert-fonce); height: 3px; border-radius: 2px; transition: height 0.3s ease; }
+        .playing .bar { animation: bounce 1s ease-in-out infinite alternate; }
+        .playing .bar:nth-child(2) { animation-delay: 0.2s; }
+        .playing .bar:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { from { height: 3px; } to { height: 100%; } }
+        .music-text { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 700; color: var(--text-dark); letter-spacing: 1px; }
+    </style>
+</head>
+<body>
+
+<div id="fixed-bg"></div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="musique2.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-control" id="musicBtn">
+    <div class="music-bars" id="barContainer">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <span class="music-text" id="statusText">PLAY</span>
+</div>
+
+<nav class="navbar">
+    <img src="logo.png" alt="Logo OS" class="nav-logo">
+    <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#mairie">Mairie</a></li>
+        <li><a href="#houppa">Houppa</a></li>
+        <li><a href="#rsvp">Présence</a></li>
+    </ul>
+</nav>
+
+<div class="page-wrapper" id="accueil">
+    <div class="main-frame">
+        <img src="logo.png" alt="Logo" style="width: 70px;">
+        <img src="Photo1.jpg" alt="Samuel & Ora" class="hero-photo">
+
+        <div class="event-card" id="mairie">
+            <h2 class="section-title">Mairie</h2>
+            <br>
+            <div class="names-couple-container">
+                <div class="name-block"><p class="name-french">Samuel</p><span class="name-hebrew-sub">&nbsp;</span></div>
+                <span class="ampersand">&</span>
+                <div class="name-block"><p class="name-french">Ora</p><span class="name-hebrew-sub">&nbsp;</span></div>
+            </div>
+            <img src="voiture.png" alt="Voiture" class="illust-voiture">
+            <span class="sub-text">Se diront « oui »</span>
+            <div class="date-block">
+                <span class="date-line">Dimanche 11 Octobre 2026</span><br>
+                <span>à 13h00</span>
+            </div>
+            <div class="info-block">
+                <span class="venue-name">Mairie de Sarcelles Village</span>
+                <span class="address-text">3 rue de la Résistance, 95200 Sarcelles</span>
+                <div class="action-btns">
+                    <a href="https://waze.com/ul?q=Mairie+de+Sarcelles+Village+3+rue+de+la+resistance+95200+Sarcelles" target="_blank" class="btn-mini">Waze</a>
+                    <button onclick="handleCalendar('Mairie', '20261011T140000', '20261011T143000', 'Mairie de Sarcelles Village')" class="btn-mini">Calendrier</button>
+                </div>
+                <span class="highlight-text">Le Henné suivra au :</span>
+                <span class="venue-name" style="font-size: 1.2rem;">Centre Berechit</span>
+                <span class="address-text">Place Rav Israël, 95200 Sarcelles</span>
+                <div class="action-btns">
+                    <a href="https://waze.com/ul?q=Centre+Berechit+Sarcelles+Place+Rav+Israel" target="_blank" class="btn-mini">Waze</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card" id="houppa">
+            <img src="hebreu.png" alt="Bénédiction" class="hebreu-img">
+            <h2 class="section-title">Houppa</h2>
+            <div class="family-grid">
+                <div class="family-col">
+                    <h3>Famille de la Kala</h3>
+                    <p>M. & Mme </p>
+                    <div class="parent-line"><p>Moshé & Carole NABET</p></div>
+                </div>
+                <div class="family-col">
+                    <h3>Famille du Hatan</h3>
+                    <p>M. ATTARD</p>
+                    <div class="parent-line"><p>et Mme ASCOLI</p></div>
+                </div>
+            </div>
+            <p style="margin-bottom: 25px; font-style: italic; font-size: 0.95rem;">Ont la joie de vous faire part du mariage de leurs enfants</p>
+            <div class="names-couple-container">
+                <div class="name-block"><p class="name-french">Samuel</p><span class="name-hebrew-sub">שמואל</span></div>
+                <span class="ampersand">&</span>
+                <div class="name-block"><p class="name-french">Ora</p><span class="name-hebrew-sub">אורה</span></div>
+            </div>
+            <img src="baguess.png" alt="Alliances" class="illust-bagues">
+            <div class="date-block">
+                <span class="date-line">Jeudi 15 Octobre 2026</span><br>
+                <span>à 16h45</span>
+            </div>
+            <div class="info-block">
+                <span class="venue-name">Le White</span>
+                <span class="address-text">68 rue Louis Ampère, 93330 Neuilly sur Marne</span>
+                <span class="highlight-text" style="font-size: 1.1rem; margin-top: 15px; border-top: 1px solid var(--line-color); padding-top: 10px;">La cérémonie sera suivie de la réception</span>
+                <div class="action-btns">
+                    <a href="https://waze.com/ul?q=Le+White+68+rue+Louis+Ampere+93330+Neuilly+sur+Marne" target="_blank" class="btn-mini">Waze</a>
+                    <button onclick="handleCalendar('Houppa', '20261015T164500', '20261016T031500', 'Le White, Neuilly sur Marne')" class="btn-mini">Calendrier</button>
+                </div>
+            </div>
+            <div class="memorial-card">
+                <p>Une pensée pour nos grands-parents ז"ל<br>
+                    <strong>Liliane Ascoli, Alfred Ascoli</strong>,<br>
+                    <strong>Georges Attard, Georgette Attard</strong>,<br>
+                    <strong>Jean-Jacques Nabet, Josiane Nabet</strong><br>
+                    qui nous manqueront tant en ce jour unique.
+                </p>
+            </div>
+        </div>
+
+        <img src="Photo2.jpg" alt="Célébration" class="section-photo">
+
+        <div class="wedding-card" id="rsvp">
+            <h2 class="section-title" style="text-align: center; font-size: 1.6rem;">Confirmation</h2>
+            <span class="rsvp-deadline">Réponse souhaitée avant le 1er Septembre 2026</span>
+            <form id="rsvpForm">
+                <input type="text" name="nom" required placeholder="Nom & Prénom" class="form-input">
+
+                <select name="pres_m" id="pres_m" onchange="toggleM()" required class="form-input">
+                    <option value="" disabled selected>Présence Mairie & Henné ?</option>
+                    <option value="oui">OUI</option>
+                    <option value="non">NON</option>
+                </select>
+
+                <div id="sec_m" class="nb-section">
+                    <label class="nb-label" for="adultes_m">Nombre de personnes</label>
+                    <input type="number" inputmode="numeric" id="adultes_m" name="adultes_m" class="nb-input" value="1" min="1">
+                </div>
+
+                <select name="pres_h" id="pres_h" onchange="toggleH()" required class="form-input">
+                    <option value="" disabled selected>Présence Houppa & Soirée ?</option>
+                    <option value="oui">OUI</option>
+                    <option value="non">NON</option>
+                </select>
+
+                <div id="sec_h" class="nb-section">
+                    <label class="nb-label" for="adultes_h">Nombre de personnes</label>
+                    <input type="number" inputmode="numeric" id="adultes_h" name="adultes_h" class="nb-input" value="1" min="1">
+                </div>
+
+                <div class="message-box">
+                    <label>Un petit mot pour nous...</label>
+                    <textarea name="message" placeholder="Vos vœux de bonheur..."></textarea>
+                </div>
+                <button type="submit" id="subBtn" class="btn-action">Envoyer ma réponse</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleM() { document.getElementById('sec_m').style.display = (document.getElementById('pres_m').value === 'oui') ? 'block' : 'none'; }
+    function toggleH() { document.getElementById('sec_h').style.display = (document.getElementById('pres_h').value === 'oui') ? 'block' : 'none'; }
+
+    const music = document.getElementById('bgMusic');
+    const musicBtn = document.getElementById('musicBtn');
+    const barContainer = document.getElementById('barContainer');
+    const statusText = document.getElementById('statusText');
+    let hasStarted = false;
+
+    function updateUI(isPlaying) {
+        if(isPlaying) {
+            barContainer.classList.add('playing');
+            statusText.innerText = "COUPER";
+        } else {
+            barContainer.classList.remove('playing');
+            statusText.innerText = "MUSIQUE";
+        }
+    }
+
+    function startAudio() {
+        if (!hasStarted) {
+            music.currentTime = 10;
+            music.play().then(() => { hasStarted = true; updateUI(true); }).catch(() => {});
+        }
+    }
+
+    window.addEventListener('scroll', startAudio, { once: true });
+    document.addEventListener('touchstart', startAudio, { once: true });
+    musicBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (!hasStarted) { music.currentTime = 10; music.play(); hasStarted = true; updateUI(true); }
+        else if (music.paused) { music.play(); updateUI(true); }
+        else { music.pause(); updateUI(false); }
+    });
+
+    const form = document.getElementById('rsvpForm');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzlRHpmFFXvz7MYPVZ3THPcf33iyrxkdmLLb37AVptW-Q1wzYYgCIyv0JZ7CNQTFeQfqA/exec';
+
+    function readCount(id, min, fallback) {
+        const n = parseInt(document.getElementById(id).value, 10);
+        return Number.isInteger(n) && n >= min ? n : fallback;
+    }
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const pres_m = formData.get('pres_m');
+        const pres_h = formData.get('pres_h');
+
+        const btn = document.getElementById('subBtn');
+        btn.disabled = true;
+        btn.innerText = "Envoi en cours...";
+
+        const data = {
+            nom:       (formData.get('nom') || '').trim(),
+            pres_m:    pres_m === 'oui' ? 'Présent' : 'Absent',
+            adultes_m: pres_m === 'oui' ? readCount('adultes_m', 1, 1) : 0,
+            enfants_m: 0, // champ supprimé du formulaire — on envoie 0 pour ne pas casser le Apps Script / la feuille
+            pres_h:    pres_h === 'oui' ? 'Présent' : 'Absent',
+            adultes_h: pres_h === 'oui' ? readCount('adultes_h', 1, 1) : 0,
+            enfants_h: 0, // idem
+            message:   (formData.get('message') || '').trim()
+        };
+
+        fetch(scriptURL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        })
+            .then(() => {
+                alert("Merci ! Votre réponse a bien été enregistrée.");
+                btn.innerText = "Envoyé !";
+                form.reset();
+                document.getElementById('sec_m').style.display = 'none';
+                document.getElementById('sec_h').style.display = 'none';
+            })
+            .catch(error => {
+                alert("Erreur réseau. Réessayez.");
+                btn.disabled = false;
+                btn.innerText = "Envoyer ma réponse";
+            });
+    });
+
+    function handleCalendar(type, start, end, loc) {
+        const title = "Mariage Samuel & Ora - " + type;
+        const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
+        if (isIOS) {
+            const icsData = ["BEGIN:VCALENDAR","VERSION:2.0","BEGIN:VEVENT","DTSTART:"+start,"DTEND:"+end,"SUMMARY:"+title,"LOCATION:"+loc,"END:VEVENT","END:VCALENDAR"].join("\r\n");
+            const blob = new Blob([icsData], { type: "text/calendar;charset=utf-8" });
+            const link = document.createElement("a");
+            link.href = window.URL.createObjectURL(blob); link.setAttribute("download", title + ".ics");
+            document.body.appendChild(link); link.click(); document.body.removeChild(link);
+        } else {
+            window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${start}/${end}&location=${encodeURIComponent(loc)}&ctz=Europe/Paris`, '_blank');
+        }
+    }
+</script>
+
+</body>
+</html>
