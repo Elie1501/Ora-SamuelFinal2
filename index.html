@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ora & Samuel - 11 Octobre 2026</title>
+    <title>Ora & Samuel - 15 Octobre 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -35,7 +35,7 @@
 <div class="main-container">
     <p class="welcome-txt">Nous avons le plaisir de vous convier au mariage de</p>
     <h1 class="names">Ora & Samuel</h1>
-    <p class="date-text">Dimanche 11 Octobre 2026</p>
+    <p class="date-text">Jeudi 15 Octobre 2026 à 16h45</p>
     <div class="countdown">
         <div class="unit"><span id="days">00</span><label>Jours</label></div>
         <div class="unit"><span id="hours">00</span><label>Heures</label></div>
@@ -45,10 +45,8 @@
     <a href="invitation.html" class="next-btn">Découvrir</a>
 </div>
 <script>
-    // Dimanche 11 Octobre 2026 à 14h00 (mois 9 = octobre en JS)
-    // Constructeur numérique = fiable, contrairement au parsing de chaîne ("May 12, 2026...")
-    // dont le comportement varie selon les navigateurs/locales.
-    const weddingDate = new Date(2026, 9, 11, 14, 0, 0).getTime();
+    // Jeudi 15 Octobre 2026 à 16h45 (mois 9 = octobre en JS)
+    const weddingDate = new Date(2026, 9, 15, 16, 45, 0).getTime();
 
     function update() {
         const now = Date.now();
